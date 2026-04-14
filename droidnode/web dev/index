@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DroidNode Web Server</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+
+            /* Image de fond identique à tes autres pages */
+            background-image: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        /* Overlay sombre + blur */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+
+        .title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #4f9cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 10px;
+            margin-bottom: 35px;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .status-tag {
+            background: rgba(63, 220, 132, 0.2);
+            color: #3DDC84;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(63, 220, 132, 0.3);
+            margin-bottom: 20px;
+        }
+
+        /* Style du bouton */
+        .btn-more {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-more:hover {
+            background: white;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-more:active {
+            transform: translateY(-1px);
+        }
+
+        /* Cadre DroidNode */
+        .version-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.4);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(6px);
+            color: rgba(255,255,255,0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="status-tag">Serveur Actif</div>
+
+    <div class="title">DroidNode Web Server</div>
+    
+    <div class="desc">
+        Bienvenue sur votre instance locale. Ce serveur web est actuellement hébergé sur votre réseau et attend le déploiement de vos fichiers.
+    </div>
+
+    <a href="/droid node web server/help" class="btn-more">
+        En savoir plus
+    </a>
+
+    <div class="version-box">DroidNode Web Server v1.0</div>
+
+</body>
+</html>
