@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | DroidNode</title>
+    <link rel="icon" type="image/svg+xml" href="https://www.droidnode.ct.ws/system/logo.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #4f9cff;
+            --android-green: #3DDC84;
+            --bg-glass: rgba(15, 15, 15, 0.7);
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .background {
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            background-image: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6);
+            z-index: -1;
+            transform: scale(1.05);
+            animation: bgAppear 1.5s ease-out forwards;
+        }
+
+        @keyframes bgAppear {
+            from { opacity: 0; transform: scale(1.1); }
+            to { opacity: 1; transform: scale(1.05); }
+        }
+
+        .login-card {
+            width: 380px;
+            padding: 50px 40px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            text-align: center;
+            animation: cardSlide 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+        }
+
+        @keyframes cardSlide {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-area { margin-bottom: 35px; }
+        h1 { font-size: 2.2rem; margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            display: block;
+            margin-top: 8px;
+        }
+
+        form { margin-top: 30px; text-align: left; }
+        .input-group { position: relative; margin-bottom: 18px; }
+
+        .input-group i:not(.toggle-password):not(.check-icon) {
+            position: absolute;
+            left: 16px; top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        /* Couleur bleue quand rempli */
+        input:not(:placeholder-shown) + i:not(.toggle-password):not(.check-icon) {
+            color: var(--accent);
+        }
+
+        /* Icône de validation (Check) */
+        .check-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%) scale(0);
+            color: var(--android-green);
+            font-size: 0.9rem;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            pointer-events: none;
+        }
+
+        .check-icon.visible {
+            transform: translateY(-50%) scale(1);
+        }
+
+        /* Oeil de visibilité */
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.4);
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 15px 45px 15px 48px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 0 4px rgba(79, 156, 255, 0.2);
+        }
+
+        .custom-placeholder {
+            position: absolute;
+            left: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.4);
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            border-radius: 14px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 20px rgba(79, 156, 255, 0.3);
+            margin-top: 15px;
+        }
+
+        .btn-login:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            margin-top: 35px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="login-card">
+        <div class="logo-area">
+            <h1>DroidNode</h1>
+            <span class="subtitle">Identification Requise</span>
+        </div>
+
+        <form method="POST">
+            <div class="input-group">
+                <input type="text" name="username" id="username" placeholder=" " required autofocus>
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-circle-check check-icon" id="userCheck"></i>
+                <span class="custom-placeholder">Nom d'utilisateur</span>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" id="password" placeholder=" " required>
+                <i class="fa-solid fa-key"></i>
+                <i class="fa-solid fa-eye toggle-password" id="toggleBtn"></i>
+                <span class="custom-placeholder">Mot de passe</span>
+            </div>
+            
+            <button type="submit" class="btn-login">
+                Se connecter <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </form>
+
+        <div class="footer-note">
+            DroidNode v1.0.4 <br>
+            Développé par Survivalier
+        </div>
+    </div>
+
+    <script>
+        // Simulation d'utilisateurs connus
+        const knownUsers = ['survivalier', 'hugo'];
+        
+        const usernameInput = document.querySelector('#username');
+        const userCheckIcon = document.querySelector('#userCheck');
+        const passwordInput = document.querySelector('#password');
+        const toggleBtn = document.querySelector('#toggleBtn');
+
+        // Gestion des placeholders et du check de l'utilisateur
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => {
+                const span = input.parentElement.querySelector('.custom-placeholder');
+                
+                // Masquer/Afficher le texte d'aide
+                span.style.opacity = input.value !== "" ? "0" : "1";
+
+                // Logique spécifique au check d'utilisateur
+                if (input.id === 'username') {
+                    if (knownUsers.includes(input.value.toLowerCase())) {
+                        userCheckIcon.classList.add('visible');
+                    } else {
+                        userCheckIcon.classList.remove('visible');
+                    }
+                }
+            });
+        });
+
+        // Toggle visibilité mot de passe
+        toggleBtn.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>
