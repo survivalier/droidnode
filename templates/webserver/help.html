@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DroidNode | Documentation Master</title>
+    <link rel="icon" type="image/svg+xml" href="https://www.droidnode.ct.ws/system/logo.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #4f9cff;
+            --green: #3DDC84;
+            --sidebar-width: 280px;
+            --bg-dark: #0a0b0c;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-dim: #94a3b8;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            background-image: url('{{ wallpaper_url }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #e2e8f0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            z-index: 0;
+        }
+
+        /* --- SIDEBAR --- */
+        nav {
+            width: var(--sidebar-width);
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 30px 15px;
+            z-index: 10;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 35px;
+            padding-left: 15px;display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .nav-logo i { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dim);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-link:hover { background: rgba(255, 255, 255, 0.05); color: white; }
+        .nav-link.active {
+            background: rgba(79, 156, 255, 0.1);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* --- MAIN --- */
+        main { flex: 1; padding: 50px 80px; overflow-y: auto; z-index: 5; }
+
+        .content-section { display: none; max-width: 850px; animation: fadeIn 0.3s ease; }
+        .content-section.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 30px; }
+        h2 { font-size: 1.4rem; color: white; margin-top: 45px; margin-bottom: 15px; }
+        p { color: var(--text-dim); line-height: 1.8; margin-bottom: 20px; }
+.doc-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0,0,0,0.4);
+            padding: 3px 7px;
+            border-radius: 4px;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        ul { padding-left: 20px; color: var(--text-dim); }
+        li { margin-bottom: 10px; }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .tag-blue { background: rgba(79,156,255,0.2); color: var(--accent); }
+        .tag-green { background: rgba(61,220,132,0.2); color: var(--green); }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-exit {
+            background: #222;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: auto;
+            text-align: center;
+        }
+        .btn-exit:hover { background: #333; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo"><img src="https://www.droidnode.ct.ws/system/logo.svg" style="height: 40px"> DroidNode</div>
+        <div class="nav-links">
+            <button class="nav-link active" onclick="showTab('intro')"><i class="fa-solid fa-compass"></i> Introduction</button>
+            <button class="nav-link" onclick="showTab('files')"><i class="fa-solid fa-folder"></i> Fichiers & Index</button>
+            <button class="nav-link" onclick="showTab('network')"><i class="fa-solid fa-server"></i> Réseau & IP</button>
+            <button class="nav-link" onclick="showTab('security')"><i class="fa-solid fa-shield-halved"></i> Sécurité</button>
+            <button class="nav-link" onclick="showTab('perf')"><i class="fa-solid fa-gauge-high"></i> Performance</button>
+            <button class="nav-link" onclick="showTab('terminal')"><i class="fa-solid fa-terminal"></i> Commandes Termux</button>
+            <button class="nav-link" onclick="showTab('errors')"><i class="fa-solid fa-circle-exclamation"></i> Codes d'Erreur</button>
+            <button class="nav-link" onclick="showTab('faq')"><i class="fa-solid fa-question-circle"></i> FAQ</button>
+            <button class="nav-link" onclick="showTab('copyright')"><i class="fa-solid fa-copyright" style="color:#A52A2A"></i> Copyright</button>
+            <button class="nav-link" onclick="showTab('license')"><i class="fa-solid fa-scale-balanced" style="color:#A52A2A"></i> License</button>
+        </div>
+        <a href="/web" class="btn-exit">Quitter l'aide</a>
+    </nav>
+
+    <main>
+        <section id="intro" class="content-section active">
+            <h1>Introduction</h1>
+            <p>DroidNode est un serveur Web <strong>Edge-Computing</strong> local. Il vous permet de transformer votre appareil Android en un hôte de fichiers capable de servir du contenu HTML, CSS et JS sur votre réseau domestique.</p>
+            <div class="doc-card">
+                <strong>Point technique :</strong> Le backend est propulsé par Python 3.13 et Flask, offrant une gestion asynchrone des fichiers et une sécurité renforcée contre le "Path Traversal".
+            </div>
+        </section>
+
+        <section id="files" class="content-section">
+            <h1>Structure des fichiers</h1>
+            <p>Tous les fichiers servis publiquement doivent se trouver dans :<br><code>/home/web dev/</code></p>
+            <h2>Priorité d'affichage</h2>
+            <p>Si vous visitez <code>/web/mon-projet/</code>, le serveur cherchera ces fichiers dans cet ordre :</p>
+            <ul>
+                <li><span class="tag tag-blue">1</span> <code>index.html</code></li>
+                <li><span class="tag tag-blue">2</span> <code>index.htm</code></li>
+                <li><span class="tag tag-blue">3</span> <code>index</code> (sans extension)</li>
+            </ul>
+        </section>
+
+        <section id="network" class="content-section">
+            <h1>Réseau & Visibilité</h1>
+            <p>Votre serveur écoute sur l'interface <code>0.0.0.0</code>, ce qui signifie qu'il accepte les connexions provenant de votre téléphone lui-même (localhost) et de tout appareil sur le Wi-Fi.</p>
+            <div class="doc-card">
+                <strong>Adresse actuelle :</strong> <code>http://{{ local_ip }}:8080/web</code>
+            </div>
+            <p>Si vous ne parvenez pas à vous connecter depuis un PC, vérifiez que l'option "Isolation AP" est désactivée sur votre routeur Wi-Fi.</p>
+        </section>
+
+        <section id="security" class="content-section">
+            <h1>Sécurité & Confidentialité</h1>
+            <p>DroidNode applique plusieurs couches de protection pour protéger vos données privées dans Termux.</p>
+            <ul>
+                <li><strong>Sandboxing :</strong> Le serveur ne peut pas lire de fichiers en dehors de <code>/home/</code>.</li>
+                <li><strong>Limitation de taille :</strong> La lecture directe de fichiers texte via l'API est limitée à 500 Ko pour éviter les plantages (RAM).</li>
+                <li><strong>Sessions :</strong> L'accès au Dashboard est protégé par un cookie de session crypté.</li>
+            </ul>
+        </section>
+
+        <section id="perf" class="content-section">
+            <h1>Optimisation & Performance</h1>
+            <p>Pour garantir la fluidité de votre serveur sur Android :</p>
+            <ul>
+                <li><strong>Mise en cache :</strong> Le navigateur met en cache les assets (images/CSS) par défaut.</li>
+                <li><strong>Mode Sommeil :</strong> Android peut couper Termux pour économiser la batterie. Utilisez la commande <code>termux-wake-lock</code> pour garder le serveur actif.</li>
+                <li><strong>Zippage :</strong> Lors du téléchargement de dossiers, la compression s'effectue dans <code>/tmp/</code> et est nettoyée immédiatement après.</li>
+            </ul>
+        </section>
+
+        <section id="terminal" class="content-section">
+            <h1>Commandes Utiles (Termux)</h1>
+            <p>Voici quelques commandes à taper dans votre application Termux pour gérer l'environnement :</p>
+            <div class="doc-card">
+                <code>python app.py</code> : Lance le serveur.<br><br>
+                <code>ls -la "~/web dev"</code> : Liste vos projets web.<br><br>
+                <code>ifconfig</code> : Affiche les détails de votre connexion réseau.<br><br>
+                <code>pkg upgrade</code> : Met à jour les bibliothèques système.
+            </div>
+        </section>
+
+        <section id="errors" class="content-section">
+            <h1>Dépannage (Erreurs)</h1>
+            <div class="doc-card">
+                <h3>403 Forbidden</h3>
+                <p>Ceci arrive si vous tentez de lister un dossier qui ne possède pas de fichier <code>index.html</code>. L'exploration de répertoire est désactivée par sécurité.</p>
+            </div>
+            <div class="doc-card">
+                <h3>BuildError</h3>
+                <p>Généralement dû à un lien incorrect dans le template Jinja2. Vérifiez vos balises <code>url_for</code>.</p>
+            </div>
+        </section>
+
+        <section id="faq" class="content-section">
+            <h1>Foire Aux Questions</h1>
+            <h3>Puis-je utiliser PHP ?</h3>
+            <p>Non, ce serveur est basé sur Flask (Python). Il sert des fichiers statiques. Pour du PHP, il faudrait installer <code>php-apache</code> ou <code>nginx</code> dans Termux.</p>
+            
+            <h3>Comment changer le port ?</h3>
+            <p>Modifiez la dernière ligne de <code>app.py</code> : <code>app.run(port=8080)</code> par le port de votre choix.</p>
+
+            <h3>Le serveur s'arrête quand je ferme Termux ?</h3>
+            <p>Oui. Pour le laisser tourner en tâche de fond, ne quittez pas l'app, revenez simplement à l'écran d'accueil de votre téléphone.</p>
+        </section>
+
+        <section id="copyright" class="content-section">
+            <h1>Copyright</h1>
+            <p>DroidNode © 2026 ⦁ Survivalier</p>
+        </section>
+
+        <section id="license" class="content-section">
+            <h1>License</h1>
+            <div class="doc-card">
+                <p>SL-Closed License (Survivalier Labs)</p>
+                <p>Version 1.0</p>
+                <br>
+                <p>Projet : DroidNode</p>
+                <p>Auteur : Survivalier</p>
+                <p>Année  : 2026</p>
+                <br>
+                <p>Tous droits réservés.</p>
+                <br>
+                <p>Aucune copie, modification, redistribution ou utilisation n'est autorisée</p>
+                <p>sans accord écrit de Survivalier ou de DroidNode.</p>
+                <br>
+                <p>Le non-respect de ces conditions peut entraîner des actions légales.</p>
+        </section>
+    </main>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            document.querySelector('main').scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
