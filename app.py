@@ -11,9 +11,6 @@ import json
 app = Flask(__name__)
 app.secret_key = "droidnode_by_survivalier"
 
-app = Flask(__name__)
-app.secret_key = "droidnode_by_survivalier"
-
 # --- CONFIGURATION DES CHEMINS DYNAMIQUES ---
 # Récupère le dossier où se trouve app.py
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
