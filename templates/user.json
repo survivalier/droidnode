@@ -5,8 +5,7 @@
       "password": "admin",
       "allowed_paths": [
         "/"
-      ],
-      "wallpaper_url": "http://www.droidnode.ct.ws/system/background.png"
+      ]
     }
   ]
 }
