@@ -11,23 +11,12 @@ import json
 app = Flask(__name__)
 app.secret_key = "droidnode_by_survivalier"
 
-# --- CONFIGURATION DES CHEMINS DYNAMIQUES ---
-# Récupère le dossier où se trouve app.py
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Le dossier SAFE_ROOT sera maintenant un dossier "droidnode" situé dans le même dossier que le serveur
-SAFE_ROOT = os.path.join(BASE_DIR, "droidnode")
-
-# Chemin vers le fichier utilisateur
-USERS_FILE = os.path.join(BASE_DIR, "templates", "user.json")
-
-# Limite de lecture pour l'API
+SAFE_ROOT = os.path.abspath("/data/data/com.termux/files/home")
 MAX_READ_BYTES = 500 * 1024
+USERS_FILE = os.path.join(os.path.dirname(__file__), "templates", "user.json")
 
-# Sécurité : Création automatique du répertoire s'il n'existe pas
-if not os.path.exists(SAFE_ROOT):
-    os.makedirs(SAFE_ROOT, exist_ok=True)
-# --------------------------------------------# ----------------- GESTION UTILISATEURS -----------------
+
+# ----------------- GESTION UTILISATEURS -----------------
 
 def load_users():
     """Charge et retourne la liste des utilisateurs depuis templates/user.json."""
@@ -57,11 +46,16 @@ def current_user():
 
 
 def get_wallpaper():
-    """Retourne le wallpaper_url de l'utilisateur connecté, ou la valeur par défaut."""
+    """Retourne le wallpaper_url de l'utilisateur connecté, ou la valeur par défaut basée sur l'IP du serveur."""
     user = current_user()
+    
     if user and "wallpaper_url" in user:
         return user["wallpaper_url"]
-    return "https://www.droidnode.ct.ws/system/background.png"
+    
+    # Récupère l'IP ou le nom de domaine (ex: 192.168.1.10:5000)
+    server_ip = request.host
+    
+    return f"http://{server_ip}/background"
 
 
 def require_login():
@@ -106,6 +100,13 @@ def safe_path_join(base, user_path):
 
 
 # ----------------- ROUTES -----------------
+@app.route("/background")
+def serve_background():
+    # On définit le chemin vers le dossier templates
+    templates_dir = os.path.join(app.root_path, "templates")
+    # On envoie le fichier background.png depuis ce dossier
+    return send_from_directory(templates_dir, "background.png")
+
 
 @app.route("/")
 def index():
