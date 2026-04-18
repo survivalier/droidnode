@@ -38,11 +38,3 @@ Pour en savoir plus sur ce projet et découvrir d'autres créations, n'hésitez 
     <strong style="vertical-align: middle; margin-left: 8px;">Visiter la page du développeur</strong>
   </a>
 </p>
-
-*(Note : Le bouton utilise l'icône de Survivalier pour une reconnaissance rapide.)*
-
----
-
-## 📄 Licence
-
-Ce projet est distribué sous licence MIT. Consultez le fichier `LICENSE` pour plus de détails.
