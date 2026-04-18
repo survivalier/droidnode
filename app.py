@@ -8,7 +8,7 @@ import socket
 import subprocess
 import json
 
-app = Flask(__name__)
+app = Flask("droidnode")
 app.secret_key = "droidnode_by_survivalier"
 
 SAFE_ROOT = os.path.abspath("/data/data/com.termux/files/home")
