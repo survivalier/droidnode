@@ -528,5 +528,5 @@ def error_403(e): return render_template("403.html"), 403
 def error_404(e): return render_template("404.html"), 404
 
 
-if __name__ == "DroidNodeServer":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
