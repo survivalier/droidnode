@@ -11,7 +11,7 @@ import json
 app = Flask("droidnode")
 app.secret_key = "droidnode_by_survivalier"
 
-SAFE_ROOT = os.path.abspath("/data/data/com.termux/files/home")
+SAFE_ROOT = os.path.abspath("/droidnode)
 MAX_READ_BYTES = 500 * 1024
 USERS_FILE = os.path.join(os.path.dirname(__file__), "templates", "user.json")
 
