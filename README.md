@@ -33,7 +33,7 @@ DroidNode répond au besoin croissant de décentralisation. Plutôt que de dépe
 Pour en savoir plus sur ce projet et découvrir d'autres créations, n'hésitez pas à visiter mon site officiel :
 
 <a href="https://survivalier.ct.ws/" target="_blank">
-  <img src="https://survivalier.ct.ws/favicon.ico">
+  <img src="https://survivalier.ct.ws/favicon.png">
 </a>
 
 *(Note : Le bouton utilise l'icône de Survivalier pour une reconnaissance rapide.)*
