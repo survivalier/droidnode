@@ -1,4 +1,4 @@
-# DroidNode [![ContentDB](https://content.luanti.org/packages/Survivalier/nexus_modpack/shields/title/)](https://content.luanti.org/packages/Survivalier/nexus_modpack/)
+# DroidNode [![ContentDB](https://survivalier.ct.ws/badge.svg)](https://content.luanti.org/packages/Survivalier/nexus_modpack/)
 
 
 
