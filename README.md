@@ -1,4 +1,6 @@
-# DroidNode 📱⚡
+# DroidNode [![ContentDB](https://content.luanti.org/packages/Survivalier/nexus_modpack/shields/title/)](https://content.luanti.org/packages/Survivalier/nexus_modpack/)
+
+
 
 <p align="center">
   <img src="https://droidnode.ct.ws/system/logo.svg" alt="DroidNode Logo" width="200">
